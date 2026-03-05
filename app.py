@@ -19,10 +19,11 @@ def build_vector_store(texts):
     model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     embeddings = model.encode(texts)
     
+    
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
     index.add(np.array(embeddings).astype('float32'))
-    return model, index
+    return model, embeddings
 
 def retrieve_docs(query, embed_model, index, texts, k=2):
     query_vec = embed_model.encode([query])
