@@ -5,7 +5,7 @@ import faiss
 from sentence_transformers import SentenceTransformer
 import ollama
 
-# 1. EXTRACT & PREPROCESS
+
 def load_data(file_path):
     with open(file_path, 'r') as f:
         data = json.load(f)
@@ -82,7 +82,7 @@ def main():
 
         with st.chat_message('assistant'):
             with st.spinner('Processing...'):
-                # RAG Pipeline
+            
                 retrieved_context = retrieve_docs(prompt, embed_model, index, texts)
                 context_str = '\n\n'.join(retrieved_context)
                 
