@@ -16,8 +16,8 @@ def load_data(file_path):
 
 @st.cache_resource
 def build_vector_store(texts):
-   
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+ 
+    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     embeddings = model.encode(texts)
     
     dimension = embeddings.shape[1]
@@ -29,6 +29,7 @@ def retrieve_docs(query, embed_model, index, texts, k=2):
     query_vec = embed_model.encode([query])
     distances, indices = index.search(np.array(query_vec).astype('float32'), k)
     return [texts[i] for i in indices[0]]
+
 
 def get_llm_response(model_name, query, context):
     
@@ -82,7 +83,7 @@ def main():
 
         with st.chat_message('assistant'):
             with st.spinner('Processing...'):
-            
+             
                 retrieved_context = retrieve_docs(prompt, embed_model, index, texts)
                 context_str = '\n\n'.join(retrieved_context)
                 

@@ -1,7 +1,8 @@
 streamlit
-langchain
-transformers
-sentence-transformers
-faiss-cpu
-torch
-huggingface-hu
+sentence-transformers==3.0.1
+transformers==4.44.2
+torch 
+faiss-cpu==1.8.0.post1
+numpy<2.0.0
+ollama
+huggingface-hub
