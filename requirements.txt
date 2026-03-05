@@ -4,6 +4,4 @@ transformers
 sentence-transformers
 faiss-cpu
 torch
-huggingface-hub
-numpy
-ollama
+huggingface-hu
