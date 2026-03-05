@@ -5,6 +5,7 @@ import faiss
 from sentence_transformers import SentenceTransformer
 import ollama
 
+# 1. EXTRACT & PREPROCESS
 def load_data(file_path):
     with open(file_path, 'r') as f:
         data = json.load(f)
@@ -16,14 +17,13 @@ def load_data(file_path):
 @st.cache_resource
 def build_vector_store(texts):
    
-    model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+    model = SentenceTransformer('all-MiniLM-L6-v2')
     embeddings = model.encode(texts)
-    
     
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
     index.add(np.array(embeddings).astype('float32'))
-    return model, embeddings
+    return model, index
 
 def retrieve_docs(query, embed_model, index, texts, k=2):
     query_vec = embed_model.encode([query])
