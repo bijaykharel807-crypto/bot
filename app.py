@@ -16,7 +16,7 @@ def load_data(file_path):
 @st.cache_resource
 def build_vector_store(texts):
    
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     embeddings = model.encode(texts)
     
     dimension = embeddings.shape[1]
