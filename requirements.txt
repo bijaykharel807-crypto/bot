@@ -1,5 +1,7 @@
 streamlit
 sentence-transformers
+transformers
+torch
 faiss-cpu
-ollama
 numpy
+ollama
